@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { GameState, Direction, Position, ObstacleShape } from './types';
+import { GameState, Direction, ObstacleShape } from './types';
 import { CELL_SIZE, GAME_WIDTH, GAME_HEIGHT, checkCollision, generateObstacle, getValidApplePosition, OBSTACLE_SIZE } from './utils';
 
 function getHighScore(): number {
@@ -50,8 +50,8 @@ export function useGameLogic(obstacleShapes: ObstacleShape[]) {
       ) {
         const currentScore = newSnake.length - 1;
         const newHighScore = Math.max(gameState.highScore, currentScore);
-        setGameState((prev) => ({ 
-          ...prev, 
+        setGameState((prev) => ({
+          ...prev,
           gameOver: true,
           highScore: newHighScore
         }));
@@ -75,7 +75,7 @@ export function useGameLogic(obstacleShapes: ObstacleShape[]) {
         apple: newApple,
         snake: newSnake,
       }));
-      
+
       // Increase speed every 10 points
       if (newSnake.length % 10 === 0) {
         setGameSpeed((prevSpeed) => Math.max(prevSpeed - 10, 50)); // Minimum speed of 50ms
