@@ -1,8 +1,8 @@
-# Year of the Snake Game
+# Retro Snake Game
 
 ## Description
 
-"Year of the Snake" is a modern, cyberpunk-themed take on the classic snake game. Built with React and Next.js, this game features responsive design, touch controls for mobile devices, and a sleek, neon-inspired visual style.
+"Retro Snake Game" is a modern, cyberpunk-themed take on the classic snake game. Built with React, this game features responsive design, touch controls for mobile devices, and a sleek, neon-inspired visual style.
 
 ## Features
 
