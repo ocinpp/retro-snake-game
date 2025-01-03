@@ -2,7 +2,7 @@
 
 ## Description
 
-"Retro Snake Game" is a modern, cyberpunk-themed take on the classic snake game. Built with React, this game features responsive design, touch controls for mobile devices, and a sleek, neon-inspired visual style.
+"Retro Snake Game" is a modern, cyberpunk-themed take on the classic snake game built by v0.dev. Built with React, this game features responsive design, touch controls for mobile devices, and a sleek, neon-inspired visual style.
 
 ## Features
 
@@ -44,7 +44,7 @@ The game logic is implemented in the `useGameLogic` hook. Here's a breakdown of 
 1. Clone this repository
 2. Run `npm install` to install dependencies
 3. Run `npm run dev` to start the development server
-4. Open `http://localhost:3000` in your browser
+4. Open `http://localhost:5173` in your browser
 
 ## Customization
 
