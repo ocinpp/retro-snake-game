@@ -164,7 +164,7 @@ export default function Game({ obstacleShapes }: GameProps) {
 
   return (
     <div className="flex flex-col items-center bg-black text-white font-geist-mono-regular">
-      <h1 className="text-3xl font-bold mb-2 text-cyan-400">Year of the Snake</h1>
+      <h1 className="text-2xl font-bold mb-2 text-cyan-400">Year of the Snake</h1>
       <div className="w-full max-w-lg mb-2 flex justify-between items-center">
         <p className="text-lg font-bold text-green-400">Score: {gameState.snake.length - 1}</p>
         <p className="text-lg font-bold text-pink-400">High Score: {gameState.highScore}</p>
@@ -187,8 +187,8 @@ export default function Game({ obstacleShapes }: GameProps) {
         />
       </div>
       {isMobile && (
-        <div className="mt-3 w-full flex justify-center">
-          <div className="w-full max-w-[50%]">
+        <div className="mt-2 w-full flex justify-center">
+          <div className="w-full max-w-[57%]">
             <div className="grid grid-cols-3 gap-2">
               <div></div>
               <button
@@ -223,7 +223,7 @@ export default function Game({ obstacleShapes }: GameProps) {
           </div>
         </div>
       )}
-      <div className="mt-3 text-center text-sm text-gray-400 h-16 flex flex-col justify-between">
+      <div className="mt-2 text-center text-sm text-gray-400 h-16 flex flex-col justify-between">
         <p>{isMobile ? 'Use touch controls to move the snake' : 'Use arrow keys to control the snake'}</p>
         {!gameStarted && !gameState.gameOver && (
           <button
