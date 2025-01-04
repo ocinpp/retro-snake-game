@@ -188,8 +188,8 @@ export default function Game({ obstacleShapes }: GameProps) {
       </div>
       {isMobile && (
         <div className="mt-2 w-full flex justify-center">
-          <div className="w-full max-w-[57%]">
-            <div className="grid grid-cols-3 gap-2">
+          <div className="w-full max-w-[60%]">
+            <div className="grid grid-cols-3 gap-1">
               <div></div>
               <button
                 className="bg-cyan-600 text-white p-4 rounded-lg aspect-square flex items-center justify-center"

@@ -33,7 +33,7 @@ export default function App() {
   ];
 
   return (
-    <main className="bg-black flex min-h-dvh flex-col justify-between p-3">
+    <main className="bg-black flex min-h-dvh flex-col justify-between p-2">
       <Game obstacleShapes={obstacleShapes} />
     </main>
   )
