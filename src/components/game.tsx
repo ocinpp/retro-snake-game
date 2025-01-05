@@ -163,7 +163,7 @@ export default function Game({ obstacleShapes }: GameProps) {
   }, [isRunning, gameState.gameOver, startGameLogic, gameSpeed]);
 
   return (
-    <div className="flex flex-col items-center bg-black text-white font-geist-mono-regular">
+    <div className="flex flex-col items-center bg-black text-white font-geist-mono-regular select-none">
       <h1 className="text-xl font-bold mb-2 text-cyan-400">Year of the Snake</h1>
       <div className="w-full max-w-lg mb-2 flex justify-between items-center">
         <p className="text-base font-bold text-green-400">Score: {gameState.snake.length - 1}</p>
