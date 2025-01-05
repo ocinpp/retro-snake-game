@@ -164,10 +164,10 @@ export default function Game({ obstacleShapes }: GameProps) {
 
   return (
     <div className="flex flex-col items-center bg-black text-white font-geist-mono-regular">
-      <h1 className="text-2xl font-bold mb-2 text-cyan-400">Year of the Snake</h1>
+      <h1 className="text-xl font-bold mb-2 text-cyan-400">Year of the Snake</h1>
       <div className="w-full max-w-lg mb-2 flex justify-between items-center">
-        <p className="text-lg font-bold text-green-400">Score: {gameState.snake.length - 1}</p>
-        <p className="text-lg font-bold text-pink-400">High Score: {gameState.highScore}</p>
+        <p className="text-base font-bold text-green-400">Score: {gameState.snake.length - 1}</p>
+        <p className="text-base font-bold text-pink-400">High Score: {gameState.highScore}</p>
       </div>
       <div
         style={{
@@ -188,7 +188,7 @@ export default function Game({ obstacleShapes }: GameProps) {
       </div>
       {isMobile && (
         <div className="mt-2 w-full flex justify-center">
-          <div className="w-full max-w-[60%]">
+          <div className="w-full max-w-[60%] p-2">
             <div className="grid grid-cols-3 gap-1">
               <div></div>
               <button
@@ -223,8 +223,10 @@ export default function Game({ obstacleShapes }: GameProps) {
           </div>
         </div>
       )}
-      <div className="mt-2 text-center text-sm text-gray-400 h-16 flex flex-col justify-between">
-        <p>{isMobile ? 'Use touch controls to move the snake' : 'Use arrow keys to control the snake'}</p>
+      <div className="mt-2 text-center text-sm text-gray-400 flex flex-col justify-between min-w-60">
+        {!isMobile && (
+          <p className="mb-2">Use arrow keys to control the snake</p>
+        )}
         {!gameStarted && !gameState.gameOver && (
           <button
             className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
@@ -246,7 +248,7 @@ export default function Game({ obstacleShapes }: GameProps) {
           </button>
         )}
       </div>
-      <p className="mt-2 text-xs text-gray-600">Speed: {Math.floor(1000 / gameSpeed)} units/second</p>
+      <p className="mt-4 text-xs text-gray-600">Speed: {Math.floor(1000 / gameSpeed)} units/second</p>
     </div>
   );
 }
