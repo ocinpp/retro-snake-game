@@ -104,14 +104,14 @@ export function useGameLogic(obstacleShapes: ObstacleShape[]) {
   const initGame = useCallback(() => {
     const initialSnake = [{ x: 0, y: 0 }];
     const newObstacles = generateObstacles();
-    const newApple = getValidApplePosition(initialSnake, newObstacles);
+    const newApple = getValidApplePosition(initialSnake, newObstacles.flat());
     setGameState(prev => ({
       ...prev,
       snake: initialSnake,
       apple: newApple,
       direction: 'RIGHT',
       gameOver: false,
-      obstacles: newObstacles,
+      obstacles: newObstacles.flat(),
     }));
     setGameSpeed(100);
   }, [generateObstacles]);
