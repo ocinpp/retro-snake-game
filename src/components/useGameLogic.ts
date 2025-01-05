@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { GameState, Direction, ObstacleShape } from './types';
-import { CELL_SIZE, GAME_WIDTH, GAME_HEIGHT, checkCollision, generateObstacle, getValidApplePosition, OBSTACLE_SIZE } from './utils';
+import { GameState, Direction, Position, ObstacleShape } from './types';
+import { CELL_SIZE, GAME_WIDTH, GAME_HEIGHT, checkCollision, generateObstacle, getValidApplePosition } from './utils';
 
 function getHighScore(): number {
   if (typeof window !== 'undefined') {
@@ -46,7 +46,7 @@ export function useGameLogic(obstacleShapes: ObstacleShape[]) {
       if (
         head.x < 0 || head.x >= GAME_WIDTH || head.y < 0 || head.y >= GAME_HEIGHT ||
         newSnake.some((segment) => checkCollision(segment, head)) ||
-        gameState.obstacles.some((obstacle) => checkCollision(obstacle, head, OBSTACLE_SIZE))
+        gameState.obstacles.some((cell => checkCollision(head, cell)))
       ) {
         const currentScore = newSnake.length - 1;
         const newHighScore = Math.max(gameState.highScore, currentScore);
@@ -69,7 +69,7 @@ export function useGameLogic(obstacleShapes: ObstacleShape[]) {
 
     // Check if snake eats the apple
     if (checkCollision(head, gameState.apple)) {
-      const newApple = getValidApplePosition(newSnake, gameState.obstacles);
+      const newApple = getValidApplePosition(newSnake, gameState.obstacles.flat());
       setGameState((prev) => ({
         ...prev,
         apple: newApple,
@@ -87,8 +87,18 @@ export function useGameLogic(obstacleShapes: ObstacleShape[]) {
   }, [gameState, isRunning]);
 
   const generateObstacles = useCallback(() => {
-    const randomShape = obstacleShapes[Math.floor(Math.random() * obstacleShapes.length)];
-    return generateObstacle(randomShape);
+    const numberOfObstacles = Math.floor(Math.random() * 2) + 1; // Generate 1 or 2 obstacles
+    let newObstacles: Position[] = [];
+
+    for (let i = 0; i < numberOfObstacles; i++) {
+      const randomShape = obstacleShapes[Math.floor(Math.random() * obstacleShapes.length)];
+      const obstacle = generateObstacle(randomShape);
+      if (obstacle.every(cell => cell.x >= 0 && cell.x < GAME_WIDTH && cell.y >= 0 && cell.y < GAME_HEIGHT)) {
+        newObstacles = newObstacles.concat(obstacle);
+      }
+    }
+
+    return newObstacles;
   }, [obstacleShapes]);
 
   const initGame = useCallback(() => {

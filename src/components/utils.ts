@@ -3,7 +3,7 @@ import { Position, ObstacleShape } from './types';
 export const CELL_SIZE = 10;
 export const GAME_WIDTH = 400;
 export const GAME_HEIGHT = 300;
-export const OBSTACLE_SIZE = 1; // Changed from 3 to 1
+export const OBSTACLE_SIZE = 5; // Changed from 1 to 5
 
 export function getRandomPosition(): Position {
   return {
@@ -15,7 +15,12 @@ export function getRandomPosition(): Position {
 export function checkCollision(pos1: Position, pos2: Position, size: number = 1): boolean {
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
-      if (pos1.x + i * CELL_SIZE === pos2.x && pos1.y + j * CELL_SIZE === pos2.y) {
+      if (
+        pos1.x < pos2.x + CELL_SIZE * size &&
+        pos1.x + CELL_SIZE > pos2.x &&
+        pos1.y < pos2.y + CELL_SIZE * size &&
+        pos1.y + CELL_SIZE > pos2.y
+      ) {
         return true;
       }
     }
@@ -24,10 +29,14 @@ export function checkCollision(pos1: Position, pos2: Position, size: number = 1)
 }
 
 export function generateObstacle(shape: ObstacleShape): Position[] {
-  const basePosition = getRandomPosition();
+  const maxX = Math.floor(GAME_WIDTH / CELL_SIZE) - 5;
+  const maxY = Math.floor(GAME_HEIGHT / CELL_SIZE) - 5;
+  const baseX = Math.floor(Math.random() * maxX) * CELL_SIZE;
+  const baseY = Math.floor(Math.random() * maxY) * CELL_SIZE;
+
   return shape.map(pos => ({
-    x: (basePosition.x + pos.x * CELL_SIZE * OBSTACLE_SIZE) % GAME_WIDTH,
-    y: (basePosition.y + pos.y * CELL_SIZE * OBSTACLE_SIZE) % GAME_HEIGHT,
+    x: baseX + pos.x * CELL_SIZE,
+    y: baseY + pos.y * CELL_SIZE,
   }));
 }
 

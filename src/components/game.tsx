@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { useGameLogic } from './useGameLogic';
-import { CELL_SIZE, GAME_WIDTH, GAME_HEIGHT, OBSTACLE_SIZE } from './utils';
+import { CELL_SIZE, GAME_WIDTH, GAME_HEIGHT } from './utils';
 import { Direction, ObstacleShape } from './types';
 
 interface GameProps {
@@ -61,8 +61,8 @@ export default function Game({ obstacleShapes }: GameProps) {
 
     // Draw obstacles
     ctx.fillStyle = CYBERPUNK_BLUE;
-    gameState.obstacles.forEach(obstacle => {
-      ctx.fillRect(obstacle.x, obstacle.y, CELL_SIZE * OBSTACLE_SIZE, CELL_SIZE * OBSTACLE_SIZE);
+    gameState.obstacles.forEach(cell => {
+        ctx.fillRect(cell.x, cell.y, CELL_SIZE, CELL_SIZE);
     });
 
     // Draw game over overlay
